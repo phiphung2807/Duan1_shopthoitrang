@@ -1,7 +1,6 @@
 <?php
     include "../model/pdo.php";
-    include "../model/danhmuc.php";
-    include "../model/sanpham.php";
+    include "../model/categories.php";
     include "header.php";
     //controller
 
@@ -15,26 +14,24 @@
                     insert_danhmuc($tenloai);                
                     $thongbao = "Thêm thành công";
                 }
-                include "danhmuc/add.php";
+                include "categories/add.php";
                 break;
             case 'listdm':
-                
                 $listdanhmuc=loadall_danhmuc();
-                include "danhmuc/list.php";
+                include "categories/list.php";
                 break;
             case 'xoadm':
                 if(isset($_GET['id'])&&($_GET['id']>0)){
                     delete_danhmuc($_GET['id']);
                 }
                 $listdanhmuc=loadall_danhmuc();
-                include "danhmuc/list.php";
+                include "categories/list.php";
                 break;
             case 'suadm':
                 if(isset($_GET['id'])&&($_GET['id']>0)){
                     $dm=loadone_danhmuc($_GET['id']);
                 }
-                
-                include "danhmuc/update.php";
+                include "categories/update.php";
                 break;
             case 'updatedm':
                 if(isset($_POST['capnhat'])&&($_POST['capnhat'])){
@@ -45,7 +42,7 @@
                 }
                 
                 $listdanhmuc=loadall_danhmuc();
-                include "danhmuc/list.php";
+                include "categories/list.php";
                 break;
             /*controler cho sản phẩm */
             
@@ -57,5 +54,3 @@
     }else {
         include "home.php";
     }
-    
-?>
