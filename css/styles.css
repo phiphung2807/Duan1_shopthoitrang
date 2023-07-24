@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
     font-family: sans-serif;
@@ -286,6 +287,9 @@
 }
 
 .formdsloai table td{
+    text-align: center;
     padding: 10px 20px;
     border: 1px #ccc solid;
 }
+
+

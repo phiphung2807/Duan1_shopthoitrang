@@ -24,6 +24,7 @@ function pdo_execute($sql){
         $stmt->execute($sql_args);
     }
     catch(PDOException $e){
+        echo "Error: " . $e->getMessage();
         throw $e;
     }
     finally{

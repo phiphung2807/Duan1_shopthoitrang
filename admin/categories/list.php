@@ -7,10 +7,9 @@
         <div class="row mb10 formdsloai">
             <table>
                 <tr>
-                    <th></th>
                     <th>MÃ LOẠI</th>
                     <th>TÊN LOẠI</th>
-                    <th></th>
+                    <th><a href="index.php?act=adddm"><input type="button" value="NHẬP THÊM"></a></th>
                 </tr>
                 <?php
                 foreach ($listdanhmuc as $danhmuc) {
@@ -18,7 +17,6 @@
                     $suadm = "index.php?act=suadm&id=" . $category_id;
                     $xoadm = "index.php?act=xoadm&id=" . $category_id;
                     echo '<tr>
-                            <td><input type="checkbox" name="" id=""></td>
                             <td>' . $category_id . '</td>
                             <td>' . $name . '</td>
                             <td><a href="' . $suadm . '"><input type="button" value="Sửa"></a>  
@@ -30,8 +28,6 @@
 
             </table>
         </div>
-        <div class="row mb10">
-            <a href="index.php?act=adddm"><input type="button" value="NHẬP THÊM"></a>
-        </div>
+
     </div>
 </div>
