@@ -7,11 +7,12 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
+
     <title>Document</title>
 </head>
 
 <body>
+    
     <header class="bg-white">
         <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
             <a class="block text-teal-600" href="index.php">
@@ -30,10 +31,21 @@
                             </a>
                         </li>
 
-                        <li>
+                        <li class="group relative">
                             <a class="text-gray-500 transition hover:text-gray-500/75" href="#">
                                 Danh mục
                             </a>
+                            <!-- Drop-down content -->
+                            <ul class="absolute hidden group-hover:block z-10 bg-white py-2 px-4 shadow-md rounded-md mt-1">
+                                <?php foreach ($dmnew as $danhmuc) { ?>
+                                    extract($danhmuc);
+                                    <li>
+                                        <a class="block text-gray-700 hover:text-teal-500" href="index.php?act=danhmuc&id=<?php echo $danhmuc['category_id']; ?>">
+                                            <?php echo $danhmuc['name']; ?>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
                         </li>
 
                         <li>
@@ -53,25 +65,25 @@
                 </nav>
 
                 <div class="flex items-center gap-4">
-                <!-- Search input -->
-                <div class="relative">
-                    <input type="text" name="kyw" class="block w-full rounded-md border-gray-300 shadow-sm p-2.5 focus:ring-teal-500 focus:border-teal-500 sm:text-sm" placeholder="Search...">
-                    <button name="listok" value="Ok" class="absolute right-2 top-2.5 text-teal-500 hover:text-teal-700" aria-label="Search">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 21l-4-4-4 4M20 9h-6a8 8 0 110 16h6a8 8 0 110-16z" />
-                        </svg>
-                    </button>
+                    <!-- Search input -->
+                    <div class="relative">
+                        <input type="text" name="kyw" class="block w-full rounded-md border-gray-300 shadow-sm p-2.5 focus:ring-teal-500 focus:border-teal-500 sm:text-sm" placeholder="Search...">
+                        <button name="listok" value="Ok" class="absolute right-2 top-2.5 text-teal-500 hover:text-teal-700" aria-label="Search">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 21l-4-4-4 4M20 9h-6a8 8 0 110 16h6a8 8 0 110-16z" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
                 <div class="flex items-center gap-4">
                     <div class="sm:flex sm:gap-4">
-                        <a class="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700" href="#">
+                        <a class="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700" href="index.php?act=dangnhap">
                             Login
                         </a>
 
-                        <a class="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block" href="#">
-                            Register
+                        <a class="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block" href="index.php?act=dangky">
+                            Signup
                         </a>
                     </div>
 
@@ -80,12 +92,31 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
-                    </button>
+                    </button>   
                 </div>
             </div>
         </div>
     </header>
-    
+    <script>
+        // JavaScript to handle the drop-down menu
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropDownTrigger = document.querySelector(".group");
+            const dropDownMenu = dropDownTrigger.querySelector(".absolute");
+            let timer;
+
+            dropDownTrigger.addEventListener("mouseenter", function() {
+                clearTimeout(timer);
+                dropDownMenu.classList.remove("hidden");
+            });
+
+            dropDownTrigger.addEventListener("mouseleave", function() {
+                timer = setTimeout(function() {
+                    dropDownMenu.classList.add("hidden");
+                }, 200); // Thời gian trễ (milliseconds) trước khi ẩn drop-down
+            });
+        });
+    </script>
+
 </body>
 
 </html>

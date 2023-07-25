@@ -21,16 +21,15 @@ if (isset($_GET['act'])) {
             $listdanhmuc = loadall_danhmuc();
             include "categories/list.php";
             break;
-            case 'xoadm':
-                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                    $id = $_GET['id'];
-            
-                    // Kiểm tra xem danh mục có sản phẩm hay không
-                    $danhmuc = loadone_danhmuc($id);
-                    if ($danhmuc && has_products_in_danhmuc($id)) {
-                        // Hiển thị thông báo và xác nhận xóa sản phẩm
-                        $confirm_message = "Danh mục này có sản phẩm. Bạn có chắc muốn xóa danh mục và tất cả sản phẩm liên quan không?";
-                        echo "<script>
+        case 'xoadm':
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                // Kiểm tra xem danh mục có sản phẩm hay không
+                $danhmuc = loadone_danhmuc($id);
+                if ($danhmuc && has_products_in_danhmuc($id)) {
+                    // Hiển thị thông báo và xác nhận xóa sản phẩm
+                    $confirm_message = "Danh mục này có sản phẩm. Bạn có chắc muốn xóa danh mục và tất cả sản phẩm liên quan không?";
+                    echo "<script>
                                 var x = confirm('$confirm_message');
                                 if (x) {
                                     window.location.href = 'index.php?act=confirm_xoadm&id=$id';
@@ -38,24 +37,24 @@ if (isset($_GET['act'])) {
                                     window.location.href = 'index.php?act=listdm';
                                 }
                             </script>";
-                    } else {
-                        // Nếu không có sản phẩm, tiến hành xóa danh mục
-                        delete_danhmuc($id);
-                    }
-                    $listdanhmuc = loadall_danhmuc();
-                    include "categories/list.php";
-                }
-                break;
-            
-            case 'confirm_xoadm':
-                // Hàm này được gọi khi người dùng xác nhận xóa danh mục và tất cả sản phẩm liên quan
-                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                    $id = $_GET['id'];
-                    delete_danhmuc_with_products($id);
+                } else {
+                    // Nếu không có sản phẩm, tiến hành xóa danh mục
+                    delete_danhmuc($id);
                 }
                 $listdanhmuc = loadall_danhmuc();
                 include "categories/list.php";
-                break;
+            }
+            break;
+
+        case 'confirm_xoadm':
+            // Hàm này được gọi khi người dùng xác nhận xóa danh mục và tất cả sản phẩm liên quan
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                delete_danhmuc_with_products($id);
+            }
+            $listdanhmuc = loadall_danhmuc();
+            include "categories/list.php";
+            break;
         case 'suadm':
             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $dm = loadone_danhmuc($_GET['id']);

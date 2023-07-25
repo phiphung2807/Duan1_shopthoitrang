@@ -10,13 +10,8 @@
 </head>
 
 <body>
-
-
-
+	
 	<div class="container w-10/12 m-auto">
-
-
-
 		<div class="px-[30px]">
 
 			<div class="grid grid-cols-3 gap-3">
