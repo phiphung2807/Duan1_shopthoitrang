@@ -3,6 +3,7 @@
 require '../../global.php';
 require_once '../../model/product.php';
 
+// xử lý yêu cầu trang web dựa trên tham số truyền vào
 
 if (exist_param("gioi-thieu")) {
     $_SESSION['name_page'] = 'gioi-thieu';

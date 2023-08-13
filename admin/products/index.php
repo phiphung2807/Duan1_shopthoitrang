@@ -6,7 +6,7 @@ require "../../global.php";
 
 check_login();
 
-// chech_login();
+
 
 extract($_REQUEST);
 $Ten_SP_error = $Price_error = $Price_Giam_error = $Mota_error = $ngay_nhap_error = $so_luot_xem_error = $ma_loai_error = $dac_biet_error = "";
@@ -133,21 +133,6 @@ if (exist_param("btn_list")) {
     $VIEW_NAME = "img.php";
 } else if (exist_param("btn_update")) {
 
-    // $Ten_SP = $_POST['Ten_SP'];
-    // $Price = $_POST['Price'];
-    // $Price_Giam = $_POST['Price_Giam'];
-    // $ma_loai = $_POST['ma_loai'];
-    // $dac_biet = $_POST['dac_biet'];
-    // $so_luot_xem = $_POST['so_luot_xem'];
-    // $Mota = $_POST['mo_ta'];
-    // $ngay_nhap = $_POST['ngay_nhap'];
-    // $Image = save_file('Image', "$UPLOAD_URL/products/");
-
-
-    // //hiển thị danh sách
-
-    // $items = product_select_page('Ma_SP', 10);
-    // $VIEW_NAME = "list.php";
 
     #lấy dữ liệu từ form
     // kiểm tra dữ liệu

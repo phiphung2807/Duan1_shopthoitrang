@@ -35,11 +35,10 @@
                                 extract($khach_hang_select);
                                 if ($giao_hang == "NO") {
                                     $trang_thai = "Chưa giao hàng";
-                                } elseif ($giao_hang == "YES") {
+                                } else if ($giao_hang == "YES") {
                                     $trang_thai = "Đang giao hàng";
                                 }
                                 $xemhdct = "donhang.php?btn_hdct&ma_hd=" . $ma_hd;
-                                // $suahd = "index.php?btn_edit&ma_hd=".$ma_hd;
                                 $xoahd = "donhang.php?btn_delete&ma_hd=" . $ma_hd;
 
                             ?>
@@ -58,8 +57,6 @@
                                 <td><?= $trang_thai ?></td>
 
                                 <td class="text-end">
-                                    <!-- <a href="<?= $suahd ?>" class="btn btn-outline-info btn-rounded"><i
-                                            class="fas fa-pen"></i></a> -->
                                     <a href="<?= $xoahd ?>" class="btn btn-outline-danger btn-rounded"
                                         onclick="return confirm(' Bạn có Muốn Xóa Không')">
                                         <i class=" fas fa-trash"></i>

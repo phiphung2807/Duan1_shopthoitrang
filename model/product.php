@@ -19,13 +19,12 @@ function product_delete($Ma_SP)
     $sql_comment = "DELETE FROM comments WHERE Ma_SP=?";
     if (is_array($Ma_SP)) {
         foreach ($Ma_SP as $ma) {
-            pdo_execute($sql_img,$ma);
+            pdo_execute($sql_img, $ma);
             pdo_execute($sql_comment, $ma);
             pdo_execute($sql, $ma);
-
         }
     } else {
-        pdo_execute($sql_img,$Ma_SP);
+        pdo_execute($sql_img, $Ma_SP);
         pdo_execute($sql_comment, $Ma_SP);
         pdo_execute($sql, $Ma_SP);
     }
@@ -109,9 +108,10 @@ function product_select_page($order, $limit)
     return pdo_query($sql);
 }
 
-function save_img($Image,$Ma_SP){
+function save_img($Image, $Ma_SP)
+{
     $sql = "INSERT INTO img(Image, Ma_SP) VALUES(?, ?)";
-    pdo_execute($sql,$Image, $Ma_SP);
+    pdo_execute($sql, $Image, $Ma_SP);
 }
 //Lưu multiple file
 function save_one_file($fieldname, $target_dir)
@@ -122,64 +122,70 @@ function save_one_file($fieldname, $target_dir)
     move_uploaded_file($file_uploaded['tmp_name'], $target_path);
     return $file_name;
 }
-function save_multiple_file($fieldname, $target_dir,$Ma_SP){
-    
+function save_multiple_file($fieldname, $target_dir, $Ma_SP)
+{
+
     foreach ($_FILES[$fieldname]['name'] as $name => $value) {
         $file_name = stripslashes($_FILES[$fieldname]['name'][$name]);
         $name_img = $_FILES[$fieldname]['tmp_name'][$name];
         $target_path = $target_dir . $file_name;
         move_uploaded_file($_FILES[$fieldname]['tmp_name'][$name], $target_path);
-        save_img($file_name,$Ma_SP);
+        save_img($file_name, $Ma_SP);
     }
-
 }
 // ===================Truy vấn ảnh sản phẩm=======================//
-function img_select_all_by_id($id){
-    $sql= "SELECT * FROM img WHERE id =? ORDER BY id desc";
-    return pdo_query($sql,$id);
+function img_select_all_by_id($id)
+{
+    $sql = "SELECT * FROM img WHERE id =? ORDER BY id desc";
+    return pdo_query($sql, $id);
 }
-function img_select_one_by_id($id){
+function img_select_one_by_id($id)
+{
     $sql = "SELECT Image FROM img WHERE id=? ";
     return pdo_query_one($sql, $id);
 }
-function img_update($id,$Image,$Ma_SP){
+function img_update($id, $Image, $Ma_SP)
+{
     $sql = "UPDATE img SET Image=?, Ma_SP=? WHERE id=?";
-    pdo_execute($sql,$Image,$Ma_SP,$id);
+    pdo_execute($sql, $Image, $Ma_SP, $id);
 }
-function img_select_all_by_MaSP($Ma_SP){
-    $sql= "SELECT * FROM img WHERE Ma_SP =? ORDER BY id desc";
-    return pdo_query($sql,$Ma_SP);
-
+function img_select_all_by_MaSP($Ma_SP)
+{
+    $sql = "SELECT * FROM img WHERE Ma_SP =? ORDER BY id desc";
+    return pdo_query($sql, $Ma_SP);
 }
-function img_select_one_by_MaSP($Ma_SP){
+function img_select_one_by_MaSP($Ma_SP)
+{
     $sql = "SELECT * FROM img WHERE Ma_SP=? LIMIT 1";
     return pdo_query_one($sql, $Ma_SP);
 }
-function name_img_select_one_by_MaSP($Ma_SP){
+function name_img_select_one_by_MaSP($Ma_SP)
+{
     $sql = "SELECT Image FROM img WHERE Ma_SP=? LIMIT 1";
     return pdo_query_one($sql, $Ma_SP);
 }
-function img_select_top2_by_MaSP($Ma_SP){
+function img_select_top2_by_MaSP($Ma_SP)
+{
     $sql = "SELECT * FROM img WHERE Ma_SP=? LIMIT 1,1";
     return pdo_query_one($sql, $Ma_SP);
 }
-function name_img_select_top2_by_MaSP($Ma_SP){
+function name_img_select_top2_by_MaSP($Ma_SP)
+{
     $sql = "SELECT Image FROM img WHERE Ma_SP=? LIMIT 1,1";
     return pdo_query_one($sql, $Ma_SP);
 }
-function img_detele($id){
+function img_detele($id)
+{
     $sql_img = "DELETE FROM img WHERE id=?";
     if (is_array($id)) {
         foreach ($id as $ma) {
-            pdo_execute($sql_img,$ma);
-            
+            pdo_execute($sql_img, $ma);
         }
     } else {
-        pdo_execute($sql_img,$id);
-        
+        pdo_execute($sql_img, $id);
     }
 }
-function img_select_page($order, $limit,$Ma_SP)
+function img_select_page($order, $limit, $Ma_SP)
 {
     if (!isset($_REQUEST['page'])) {
         $_SESSION['page'] = 1;
@@ -194,5 +200,5 @@ function img_select_page($order, $limit,$Ma_SP)
     $begin = ($_SESSION['page'] - 1) * $limit;
     $_SESSION['total_page'] = ceil($_SESSION['total_pro'] / $limit);
     $sql = "SELECT * FROM img WHERE Ma_SP=? ORDER BY $order ASC LIMIT $begin,$limit";
-    return pdo_query($sql,$Ma_SP);
+    return pdo_query($sql, $Ma_SP);
 }

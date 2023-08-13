@@ -20,9 +20,7 @@
                     <div class="box-body">
                         <form action="?btn_delete_all" method="post" class="table-responsive">
 
-                            <button type="submit" class="btn btn-danger mb-1" id="deleteAll"
-                                onclick="return checkDelete()">
-                                Xóa mục đã chọn</button> <i class="ml-5">hàng hóa: <b><?= $items[0]['Ten_SP'] ?></b></i>
+                                <i class="ml-5">hàng hóa: <b><?= $items[0]['Ten_SP'] ?></b></i>
                             <table width="100%" class="table table-hover table-bordered text-center">
                                 <thead class="thead-dark">
                                     <tr>

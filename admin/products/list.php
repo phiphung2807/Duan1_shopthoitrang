@@ -31,7 +31,7 @@
                                 <th>Giảm giá</th>
                                 <th>Lượt xem</th>
                                 <th>Ngày nhập</th>
-                                <th>Đặc biệt?</th>
+                                <th>Đặc biệt</th>
                                 <th><a href="index.php" class="btn btn-success text-white">Thêm mới
                                         <i class="fas fa-plus-circle"></i></a></th>
                             </tr>
@@ -52,10 +52,8 @@
                                 } else {
                                     $img = "no photo";
                                 }
-                                //Tính giảm bn %
-                                if ($Price > 0) {
-                                    $percent_discount = number_format($Price / $Price_Giam * 10);
-                                }
+
+                                
                             ?>
                             <tr>
                                 <td><input type="checkbox" name="Ten_SP[]" value="<?= $Ma_SP ?>"></td>
@@ -66,8 +64,7 @@
                                         <i class="fa fa-eye"></i>
                                     </a></td>
                                 <td><?= number_format($Price, 0) ?>đ</td>
-                                <td><?= number_format($Price_Giam, 0) ?>đ<i
-                                        class="text-danger">(<?= isset($percent_discount) ? $percent_discount : '' ?>%)</i>
+                                <td><?= number_format($Price_Giam, 0) ?>đ
                                 </td>
                                 <td><?= $so_luot_xem ?></td>
                                 <td><?= $ngay_nhap ?></td>

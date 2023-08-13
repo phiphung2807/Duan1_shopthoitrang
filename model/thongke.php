@@ -1,18 +1,7 @@
 <?php
 
 require_once 'pdo.php';
-function thong_ke_product()
-{
-    $sql = "SELECT lo.ma_loai, lo.ten_loai,"
-        . " COUNT(*) so_luong,"
-        . " MIN(hh.Price) gia_min,"
-        . " MAX(hh.Price) gia_max,"
-        . " AVG(hh.Price) gia_avg"
-        . " FROM products hh "
-        . " JOIN loai lo ON lo.ma_loai=hh.ma_loai "
-        . " GROUP BY lo.ma_loai, lo.ten_loai";
-    return pdo_query($sql);
-}
+
 function thong_ke_comment()
 {
     $sql = "SELECT hh.Ma_SP, hh.Ten_SP,"

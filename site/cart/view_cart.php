@@ -43,7 +43,7 @@
                         </td>
                         <td class="pt-1 m-auto">
                             <form action="delete_cart.php?act=update_sl" method="post">
-                                <input type="number" class="form-control sl" value="<?= $item['so_luong'] ?>">
+                                <input type="text" class="form-control sl" value="<?= $item['so_luong'] ?>">
                                 <input type="hidden" class="form-control" name="ma_hh" value="<?= $Ma_SP ?>">
                             </form>
                         </td>
